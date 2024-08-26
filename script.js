@@ -9,21 +9,22 @@ var tl = gsap.timeline();
 
 
 Button.addEventListener('click', function() {
-    tl.to(".cover", {
-        opacity: 0,
-        duration: 2,
-        ease: "expo.inOut"
-    });
+    // tl.to(".cover", {
+    //     opacity: 0,
+    //     duration: 2,
+    //     ease: "expo.inOut"
+    // });
 
-    gsap.from("#heading #h1", {
-        y: 100,
+    gsap.to(".cover", {
         opacity: 0,
         delay: 1,
-        duration: 0.9,
+        duration: 2,
         stagger: 0.3
     });
 
 });
+
+
 
 
 
