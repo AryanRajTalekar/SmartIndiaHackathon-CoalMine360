@@ -22,7 +22,22 @@ Button.addEventListener('click', function() {
         stagger: 0.3
     });
 
+    gsap.to(".page1",{
+        opacity: 0,
+        delay: 1,
+        duration: 2,
+        stagger: 0.3
+    });
+
 });
+
+
+
+
+
+
+
+
 
 
 
