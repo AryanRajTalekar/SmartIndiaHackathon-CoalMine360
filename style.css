@@ -130,47 +130,232 @@ html, body {
     width: 100%;
     height: 100vh;
     background-color: black;
-    border-top-left-radius: 1vw;
-    border-top-right-radius: 1vw;
+
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid white; */
+}
+
+.slider {
+    position: relative;
+    max-width: 70%;
+    height: 75vh;
+    margin: auto;
+    margin-top:10vw;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.slides {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #fff;
+    transition: transform 0.5s ease-in-out;
+    opacity: 1.1;
+}
+
+.slide img {
+    border-radius: 10px;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Increase the size of images without a specific class by 80% */
+.slide img:not(.ndtv) {
+    max-width: calc(50% * 1.8); /* Increase width by 80% */
+    max-height: calc(90% * 1.8); /* Increase height by 80% */
+}
+
+/* Adjusting the size of images with the ndtv class */
+.ndtv {
+    width: 20px; /* Adjusted the width */
+    height: 20px; /* Adjusted the height */
+    margin-top: 10px;
+    margin-right: 5px; /* Space between the icon and text */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* vertical-align: middle; Align with the text */
+}
+
+.slide-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+}
+
+.slide a {
+    text-decoration: none;
+    color: #333;
+}
+
+.slide h2 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+.slide h2:hover {
+    color: #621d8f;
+}
+
+.slide p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+.slide h6 {
+    font-size: 12px;
+    color: #999;
+    margin: 9px 40px 40px;
+    display: flex;
+    align-items: center;
+}
+
+/* Navigation button styles */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.next {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .slide {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .slide img {
+        max-width: 95%;
+        max-height: 40%;
+        margin: 0 0 20px;
+    }
+
+    .slide h2 {
+        font-size: 20px;
+    }
+
+    .slide p {
+        font-size: 14px;
+    }
+
+    .slide h6 {
+        font-size: 10px;
+    }
+
+    .prev, .next {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+
+
+#moving-div {
+    /* margin-top: 10vh; */
+    position: absolute;
+    /* bottom: 3%; */
+    /* top:3%; */
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.color-changing-border {
-    /* padding: 20px; */
-    border: 2px solid ;
-    border-radius: 2vw;
-    animation: borderChange 3s infinite linear;
-}
-@keyframes borderChange {
-    0% {
-        border-color: rgb(199, 142, 142);
-    }
-    25% {
-        border-color: blue;
-    }
-    50% {
-        border-color: green;
-    }
-    75% {
-        border-color: yellow;
-    }
-    100% {
-        border-color: gray;
-    }
-}
-
-.steps{
-    width: 80vw;
-    height: 80vh;
-    border-radius: 1.5vw;
-}
-
-.step-container{
+    margin-top:-10vw;
+    white-space: nowrap;
+    /* padding: 1.2vw; */
+    overflow: hidden;
     width: 100%;
-    height: 100%;
-    border-radius: 2vw;
-    background-color: red;
+    height: 4vw;
+
 }
+
+
+
+#moving-div .move {
+    display: inline-block;
+    animation-name: mobe;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#moving-div .move h1 {
+    height: 3vw;
+    margin: 0 1.2vw;
+}
+
+@keyframes mobe {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+
+}
+
+#blur-left {
+    height: 100%;
+    width: 20%;
+    background: linear-gradient(to right, white, transparent);
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+#blur-right {
+    height: 100%;
+    width: 20%;
+    background: linear-gradient(to left, white, transparent);
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+
+
+
+
+
+
 
