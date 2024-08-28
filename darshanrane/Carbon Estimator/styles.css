@@ -1,0 +1,101 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('BGimg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 900px; /* Increased width to accommodate both form and results side by side */
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+    color: #ffd700;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif;
+}
+
+.form-results-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+form {
+    flex: 1;
+    margin-right: 30px; /* Space between form and results */
+}
+
+#results {
+    flex: 1;
+    margin-left: 30px; /* Space between form and results */
+}
+
+label {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+    background-color: #444;
+    color: #fff;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffa500;
+    color: #000;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff4500;
+}
+
+.results {
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px;
+}
+
+.results p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+canvas {
+    margin-top: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+#comparisonResults {
+    margin-top: 20px;
+}

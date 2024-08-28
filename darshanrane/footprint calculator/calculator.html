@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <link rel="stylesheet" href="calcstyle.css">
+
+    <style>
+    #result {
+            padding: 20px;
+            color: whitesmoke;
+            font-size: 18px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #1e1e1e; /* Dark background for dark theme */
+    color: #e0e0e0; /* Light text color for readability */
+}
+
+/* Header Styles */
+h1 {
+    text-align: center;
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+form {
+    max-width: 1200px; /* Increased width for larger screens */
+    margin: 0 auto;
+    padding: 20px;
+    background: #2c2c2c; /* Dark grey background for form */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Stronger shadow for better contrast */
+}
+
+/* Flex Container for Sections */
+.form-sections {
+    display: flex;
+    flex-wrap: wrap; /* Allow sections to wrap on smaller screens */
+    gap: 20px; /* Space between sections */
+}
+
+/* Individual Section Styles */
+.section {
+    flex: 1 1 300px; /* Flex grow and shrink, with a minimum width */
+    background: #333; /* Dark grey background for sections */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Label Styles */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #ffffff; /* White color for labels */
+}
+
+/* Input Styles */
+input[type="number"],
+input[type="text"],
+select {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 1px solid #444; /* Darker border for inputs */
+    border-radius: 4px;
+    background-color: #333; /* Darker background for inputs */
+    color: #e0e0e0; /* Light text color for inputs */
+}
+
+/* Button Styles */
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    background-color: #ffa500;
+    color: #ffffff; /* White text color for buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff4500;
+}
+
+/* Result Styles */
+.result {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #333; /* Dark grey background for result box */
+    border-radius: 4px;
+    text-align: center;
+    color: #ffffff; /* White text color for result */
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Carbon Footprint Calculator</h1>
+        <form id="carbonForm">
+            <div class="form-sections">
+                <!-- Household Section -->
+                <div class="section">
+                    <h2>Household Footprint</h2>
+                    <label for="electricity">Electricity (kWh):</label>
+                    <input type="number" id="electricity" name="electricity" step="0.01">
+                    <label for="naturalGas">Natural Gas (kWh):</label>
+                    <input type="number" id="naturalGas" name="naturalGas" step="0.01">
+                    <label for="heatingOil">Heating Oil (litres):</label>
+                    <input type="number" id="heatingOil" name="heatingOil" step="0.01">
+                    <label for="coal">Coal (tonnes):</label>
+                    <input type="number" id="coal" name="coal" step="0.01">
+                    <label for="lpg">LPG (litres):</label>
+                    <input type="number" id="lpg" name="lpg" step="0.01">
+                    <label for="propane">Propane (litres):</label>
+                    <input type="number" id="propane" name="propane" step="0.01">
+                    <label for="wood">Wood (tonnes):</label>
+                    <input type="number" id="wood" name="wood" step="0.01">
+                </div>
+
+                <!-- Transportation Section -->
+                <div class="section">
+                    <h2>Transportation Footprint</h2>
+                    <label for="mileage">Mileage (miles):</label>
+                    <input type="number" id="mileage" name="mileage" step="0.01">
+                    <label for="vehicleEfficiency">Vehicle Efficiency (mpg):</label>
+                    <input type="number" id="vehicleEfficiency" name="vehicleEfficiency" step="0.01">
+                    <label for="vehicleType">Vehicle Type:</label>
+                    <select id="vehicleType">
+                        <option value="car">Car</option>
+                        <option value="motorbike">Motorbike</option>
+                        <option value="van">Van</option>
+                    </select>
+                    <label for="busMiles">Bus (miles):</label>
+                    <input type="number" id="busMiles" name="busMiles" step="0.01">
+                    <label for="coachMiles">Coach (miles):</label>
+                    <input type="number" id="coachMiles" name="coachMiles" step="0.01">
+                    <label for="nationalRailMiles">National Rail (miles):</label>
+                    <input type="number" id="nationalRailMiles" name="nationalRailMiles" step="0.01">
+                    <label for="internationalRailMiles">International Rail (miles):</label>
+                    <input type="number" id="internationalRailMiles" name="internationalRailMiles" step="0.01">
+                    <label for="tramMiles">Tram (miles):</label>
+                    <input type="number" id="tramMiles" name="tramMiles" step="0.01">
+                    <label for="tubeMiles">Tube/Subway (miles):</label>
+                    <input type="number" id="tubeMiles" name="tubeMiles" step="0.01">
+                    <label for="taxiMiles">Taxi (miles):</label>
+                    <input type="number" id="taxiMiles" name="taxiMiles" step="0.01">
+                </div>
+
+                <!-- Secondary Section -->
+                <div class="section">
+                    <h2>Secondary Footprint</h2>
+                    <label for="foodDrink">Food and Drink (£ per year):</label>
+                    <input type="number" id="foodDrink" name="foodDrink" step="0.01">
+                    <label for="pharmaceuticals">Pharmaceuticals (£ per year):</label>
+                    <input type="number" id="pharmaceuticals" name="pharmaceuticals" step="0.01">
+                    <label for="clothes">Clothes, Textiles and Shoes (£ per year):</label>
+                    <input type="number" id="clothes" name="clothes" step="0.01">
+                    <label for="paperProducts">Paper Products (£ per year):</label>
+                    <input type="number" id="paperProducts" name="paperProducts" step="0.01">
+                    <label for="itEquipment">Computers and IT Equipment (£ per year):</label>
+                    <input type="number" id="itEquipment" name="itEquipment" step="0.01">
+                    <label for="tvEquipment">Television, Radio, and Phone (£ per year):</label>
+                    <input type="number" id="tvEquipment" name="tvEquipment" step="0.01">
+                    <label for="motorVehicles">Motor Vehicles (not including fuel costs) (£ per year):</label>
+                    <input type="number" id="motorVehicles" name="motorVehicles" step="0.01">
+                    <label for="furniture">Furniture and Other Manufactured Goods (£ per year):</label>
+                    <input type="number" id="furniture" name="furniture" step="0.01">
+                    <label for="hotels">Hotels, Restaurants, and Pubs (£ per year):</label>
+                    <input type="number" id="hotels" name="hotels" step="0.01">
+                    <label for="phoneCalls">Telephone, Mobile/Cell Phone Call Costs (£ per year):</label>
+                    <input type="number" id="phoneCalls" name="phoneCalls" step="0.01">
+                    <label for="banking">Banking and Finance (£ per year):</label>
+                    <input type="number" id="banking" name="banking" step="0.01">
+                </div>
+            </div>
+
+            <!-- Button to Calculate Carbon Footprint -->
+            <button type="button" onclick="calculateFootprint()">Calculate</button>
+        </form>
+
+        <!-- Result Display -->
+        <div class="result" id="result">
+            <!-- Result will be displayed here -->
+            <p id="houseResult"></p>
+            <p id="carResult"></p>
+            <p id="motorbikeResult"></p>
+            <p id="busRailResult"></p>
+            <p id="secondaryResult"></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code to handle the form submission and result calculation
+
+        function calculateFootprint() {
+    // Get form input values
+    const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+    const naturalGas = parseFloat(document.getElementById('naturalGas').value) || 0;
+    const heatingOil = parseFloat(document.getElementById('heatingOil').value) || 0;
+    const coal = parseFloat(document.getElementById('coal').value) || 0;
+    const lpg = parseFloat(document.getElementById('lpg').value) || 0;
+    const propane = parseFloat(document.getElementById('propane').value) || 0;
+    const wood = parseFloat(document.getElementById('wood').value) || 0;
+    const mileage = parseFloat(document.getElementById('mileage').value) || 0;
+    const vehicleEfficiency = parseFloat(document.getElementById('vehicleEfficiency').value) || 0;
+    const vehicleType = document.getElementById('vehicleType').value;
+    const busMiles = parseFloat(document.getElementById('busMiles').value) || 0;
+    const coachMiles = parseFloat(document.getElementById('coachMiles').value) || 0;
+    const nationalRailMiles = parseFloat(document.getElementById('nationalRailMiles').value) || 0;
+    const internationalRailMiles = parseFloat(document.getElementById('internationalRailMiles').value) || 0;
+    const tramMiles = parseFloat(document.getElementById('tramMiles').value) || 0;
+    const tubeMiles = parseFloat(document.getElementById('tubeMiles').value) || 0;
+    const taxiMiles = parseFloat(document.getElementById('taxiMiles').value) || 0;
+    const foodDrink = parseFloat(document.getElementById('foodDrink').value) || 0;
+    const pharmaceuticals = parseFloat(document.getElementById('pharmaceuticals').value) || 0;
+    const clothes = parseFloat(document.getElementById('clothes').value) || 0;
+    const paperProducts = parseFloat(document.getElementById('paperProducts').value) || 0;
+    const itEquipment = parseFloat(document.getElementById('itEquipment').value) || 0;
+    const tvEquipment = parseFloat(document.getElementById('tvEquipment').value) || 0;
+    const motorVehicles = parseFloat(document.getElementById('motorVehicles').value) || 0;
+    const furniture = parseFloat(document.getElementById('furniture').value) || 0;
+    const hotels = parseFloat(document.getElementById('hotels').value) || 0;
+    const phoneCalls = parseFloat(document.getElementById('phoneCalls').value) || 0;
+    const banking = parseFloat(document.getElementById('banking').value) || 0;
+
+    // Calculate carbon footprint
+    const footprintHousehold = electricity * 0.233 + naturalGas * 0.184 + heatingOil * 0.263 + coal * 0.291 + lpg * 0.238 + propane * 0.227 + wood * 0.034;
+    const footprintCar = (mileage / vehicleEfficiency) * (vehicleType === 'car' ? 0.240 : vehicleType === 'motorbike' ? 0.132 : 0.297);
+    const footprintPublicTransport = busMiles * 0.00021 + coachMiles * 0.00023 + nationalRailMiles * 0.00005 + internationalRailMiles * 0.00009 + tramMiles * 0.00019 + tubeMiles * 0.00024 + taxiMiles * 0.00044;
+    const footprintSecondary = foodDrink * 0.00018 + pharmaceuticals * 0.00017 + clothes * 0.00023 + paperProducts * 0.00021 + itEquipment * 0.00019 + tvEquipment * 0.00011 + motorVehicles * 0.00022 + furniture * 0.00018 + hotels * 0.00020 + phoneCalls * 0.00009 + banking * 0.00012;
+
+    // Calculate colors based on footprint
+    const colorHousehold = getColorForFootprint(footprintHousehold);
+    const colorCar = getColorForFootprint(footprintCar);
+    const colorPublicTransport = getColorForFootprint(footprintPublicTransport);
+    const colorSecondary = getColorForFootprint(footprintSecondary);
+
+    // Display results with colors
+    document.getElementById('houseResult').innerHTML = `Household Footprint: <span style="color: ${colorHousehold}">${footprintHousehold.toFixed(2)} kg CO2</span>`;
+    document.getElementById('carResult').innerHTML = `Car Footprint: <span style="color: ${colorCar}">${footprintCar.toFixed(2)} kg CO2</span>`;
+    document.getElementById('motorbikeResult').innerHTML = `Motorbike Footprint: <span style="color: ${colorCar}">${footprintCar.toFixed(2)} kg CO2</span>`;
+    document.getElementById('busRailResult').innerHTML = `Public Transport Footprint: <span style="color: ${colorPublicTransport}">${footprintPublicTransport.toFixed(2)} kg CO2</span>`;
+    document.getElementById('secondaryResult').innerHTML = `Secondary Footprint: <span style="color: ${colorSecondary}">${footprintSecondary.toFixed(2)} kg CO2</span>`;
+}
+
+function getColorForFootprint(footprint) {
+    const ratio = footprint / 10; // Adjust the denominator based on the expected range
+    const clampedRatio = Math.max(0, Math.min(1, ratio));
+
+    const colorStops = [
+        { offset: 0, color: '#00FF00' }, // Green
+        { offset: 0.5, color: '#FFFF00' }, // Yellow
+        { offset: 1, color: '#FF0000' }  // Red
+    ];
+
+    let startColor = colorStops[0].color;
+    let endColor = colorStops[colorStops.length - 1].color;
+    let factor = 0;
+
+    for (let i = 0; i < colorStops.length - 1; i++) {
+        if (clampedRatio >= colorStops[i].offset && clampedRatio <= colorStops[i + 1].offset) {
+            startColor = colorStops[i].color;
+            endColor = colorStops[i + 1].color;
+            factor = (clampedRatio - colorStops[i].offset) / (colorStops[i + 1].offset - colorStops[i].offset);
+            break;
+        }
+    }
+
+    return interpolateColor(startColor, endColor, factor);
+}
+
+function interpolateColor(startColor, endColor, factor) {
+    const startRGB = hexToRgb(startColor);
+    const endRGB = hexToRgb(endColor);
+    const r = Math.round(startRGB.r + factor * (endRGB.r - startRGB.r));
+    const g = Math.round(startRGB.g + factor * (endRGB.g - startRGB.g));
+    const b = Math.round(startRGB.b + factor * (endRGB.b - startRGB.b));
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return { r, g, b };
+}
+
+    </script>
+</body>
+</html>

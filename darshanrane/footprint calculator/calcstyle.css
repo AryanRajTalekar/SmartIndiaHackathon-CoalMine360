@@ -1,0 +1,87 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #1e1e1e; /* Dark background for dark theme */
+    color: #e0e0e0; /* Light text color for readability */
+}
+
+/* Header Styles */
+h1 {
+    text-align: center;
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+form {
+    max-width: 1200px; /* Increased width for larger screens */
+    margin: 0 auto;
+    padding: 20px;
+    background: #2c2c2c; /* Dark grey background for form */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Stronger shadow for better contrast */
+}
+
+/* Flex Container for Sections */
+.form-sections {
+    display: flex;
+    flex-wrap: wrap; /* Allow sections to wrap on smaller screens */
+    gap: 20px; /* Space between sections */
+}
+
+/* Individual Section Styles */
+.section {
+    flex: 1 1 300px; /* Flex grow and shrink, with a minimum width */
+    background: #333; /* Dark grey background for sections */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Label Styles */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #ffffff; /* White color for labels */
+}
+
+/* Input Styles */
+input[type="number"],
+input[type="text"],
+select {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 1px solid #444; /* Darker border for inputs */
+    border-radius: 4px;
+    background-color: #333; /* Darker background for inputs */
+    color: #e0e0e0; /* Light text color for inputs */
+}
+
+/* Button Styles */
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    background-color: #ffa500;
+    color: #ffffff; /* White text color for buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff4500;
+}
+
+/* Result Styles */
+.result {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #333; /* Dark grey background for result box */
+    border-radius: 4px;
+    text-align: center;
+    color: #ffffff; /* White text color for result */
+}

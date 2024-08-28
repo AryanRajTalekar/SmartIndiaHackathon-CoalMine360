@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Emission Map of India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#map {
+    height: 100vh;
+    width: 100%;
+}
+/* Style for text labels */
+.text-label {
+    font-size: 12px; /* Adjust font size as needed */
+    color: #000; /* Text color */
+    background-color: rgba(255, 255, 255, 0.8); /* Background color with some transparency */
+    padding: 2px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 1.5; /* Adjust line height for better spacing */
+    width: 100px; /* Adjust width to fit text */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script >
+   // Initialize the map
+const map = L.map('map').setView([20.5937, 78.9629], 5); // Center of India
+
+// Add a tile layer to the map (you can use different providers)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// Sample data: GeoJSON object with coal mine locations
+const coalMinesData = {
+    "type": "FeatureCollection",
+    "features": [
+        // Jharkhand
+        { "type": "Feature", "properties": { "name": "Jharia Coalfield" }, "geometry": { "type": "Point", "coordinates": [86.4370, 23.7244] } },
+        { "type": "Feature", "properties": { "name": "Giridih Coalfield" }, "geometry": { "type": "Point", "coordinates": [85.6345, 24.4460] } },
+        { "type": "Feature", "properties": { "name": "Bokaro Coalfield" }, "geometry": { "type": "Point", "coordinates": [86.1515, 23.3988] } },
+        { "type": "Feature", "properties": { "name": "North Karanpura Coalfield" }, "geometry": { "type": "Point", "coordinates": [85.5428, 23.2823] } },
+        { "type": "Feature", "properties": { "name": "South Karanpura Coalfield" }, "geometry": { "type": "Point", "coordinates": [85.5995, 23.3612] } },
+        { "type": "Feature", "properties": { "name": "Ramgarh Coalfield" }, "geometry": { "type": "Point", "coordinates": [85.6836, 23.6074] } },
+        { "type": "Feature", "properties": { "name": "Daltonganj Coalfield" }, "geometry": { "type": "Point", "coordinates": [84.0751, 24.0335] } },
+        
+        // Odisha
+        { "type": "Feature", "properties": { "name": "Talcher Coalfield" }, "geometry": { "type": "Point", "coordinates": [85.2153, 20.5133] } },
+        { "type": "Feature", "properties": { "name": "Ib Valley Coalfield" }, "geometry": { "type": "Point", "coordinates": [84.0041, 21.7898] } },
+        { "type": "Feature", "properties": { "name": "Jharsuguda Coalfield" }, "geometry": { "type": "Point", "coordinates": [84.3159, 21.8718] } },
+        { "type": "Feature", "properties": { "name": "Rampia Coalfield" }, "geometry": { "type": "Point", "coordinates": [84.2086, 21.4724] } },
+        { "type": "Feature", "properties": { "name": "Mand-Raigarh Coalfield" }, "geometry": { "type": "Point", "coordinates": [83.3694, 22.1883] } },
+        
+        // Chhattisgarh
+        { "type": "Feature", "properties": { "name": "Korba Coalfield" }, "geometry": { "type": "Point", "coordinates": [82.6858, 22.3521] } },
+        { "type": "Feature", "properties": { "name": "Hasdeo Arand Coalfield" }, "geometry": { "type": "Point", "coordinates": [82.7284, 22.3684] } },
+        { "type": "Feature", "properties": { "name": "Mand-Raigarh Coalfield" }, "geometry": { "type": "Point", "coordinates": [83.3694, 22.1883] } },
+        
+        // West Bengal
+        { "type": "Feature", "properties": { "name": "Raniganj Coalfield" }, "geometry": { "type": "Point", "coordinates": [87.3210, 23.7438] } },
+        
+        // Madhya Pradesh
+        { "type": "Feature", "properties": { "name": "Singrauli Coalfield" }, "geometry": { "type": "Point", "coordinates": [82.6795, 24.1981] } },
+        { "type": "Feature", "properties": { "name": "Pench-Kanhan Coalfield" }, "geometry": { "type": "Point", "coordinates": [79.5798, 22.1712] } },
+        { "type": "Feature", "properties": { "name": "Satpura Coalfield" }, "geometry": { "type": "Point", "coordinates": [78.7569, 22.0382] } },
+        
+        // Telangana
+        { "type": "Feature", "properties": { "name": "Singareni Collieries Company Limited" }, "geometry": { "type": "Point", "coordinates": [79.5840, 17.3833] } },
+        
+        // Tamil Nadu
+        { "type": "Feature", "properties": { "name": "Neyveli Lignite Corporation" }, "geometry": { "type": "Point", "coordinates": [79.4644, 11.3650] } },
+        
+        // Maharashtra
+        { "type": "Feature", "properties": { "name": "Wardha Valley Coalfield" }, "geometry": { "type": "Point", "coordinates": [79.2202, 20.1104] } },
+        { "type": "Feature", "properties": { "name": "Pench-Kanhan Coalfield" }, "geometry": { "type": "Point", "coordinates": [79.5798, 22.1712] } },
+        
+        // Assam
+        { "type": "Feature", "properties": { "name": "Makum Coalfield" }, "geometry": { "type": "Point", "coordinates": [94.6552, 27.1391] } },
+        { "type": "Feature", "properties": { "name": "Ledo Coalfield" }, "geometry": { "type": "Point", "coordinates": [94.4315, 27.3220] } },
+        { "type": "Feature", "properties": { "name": "Lakhimpur Coalfield" }, "geometry": { "type": "Point", "coordinates": [93.6725, 27.3082] } },
+        { "type": "Feature", "properties": { "name": "Borholla Coalfield" }, "geometry": { "type": "Point", "coordinates": [93.4422, 27.4558] } },
+        { "type": "Feature", "properties": { "name": "Namdang Coalfield" }, "geometry": { "type": "Point", "coordinates": [93.3575, 27.2841] } },
+        
+        // Meghalaya
+        { "type": "Feature", "properties": { "name": "Jaintia Hills Coalfield" }, "geometry": { "type": "Point", "coordinates": [92.4370, 25.5380] } },
+        { "type": "Feature", "properties": { "name": "Garo Hills Coalfield" }, "geometry": { "type": "Point", "coordinates": [90.7882, 25.5930] } },
+        
+        // Nagaland
+        { "type": "Feature", "properties": { "name": "Tiru Valley Coalfield" }, "geometry": { "type": "Point", "coordinates": [94.6906, 26.0842] } },
+        { "type": "Feature", "properties": { "name": "Chumukedima Coalfield" }, "geometry": { "type": "Point", "coordinates": [94.4462, 25.6914] } },
+        
+        // Arunachal Pradesh
+        { "type": "Feature", "properties": { "name": "Namchik-Namphuk Coalfield" }, "geometry": { "type": "Point", "coordinates": [95.5920, 27.0500] } }
+    ]
+};
+
+// Function to style the markers
+function getColor() {
+    return '#FF5722'; // Example color for the markers
+}
+
+// Add GeoJSON data to the map
+L.geoJSON(coalMinesData, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, {
+            radius: 8,
+            fillColor: getColor(),
+            color: '#000',
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+        });
+    },
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup(`<strong>${feature.properties.name}</strong>`);
+    }
+}).addTo(map);
+
+
+    </script>
+</body>
+</html>
