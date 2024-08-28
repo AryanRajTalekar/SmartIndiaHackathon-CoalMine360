@@ -3,7 +3,29 @@ const scroll = new LocomotiveScroll({
     smooth: true
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    var video = document.getElementById('background-video');
-    video.playbackRate = 0.8;
-});
+
+function loadingAnimation(){
+    gsap.from("#heading1",{
+        y: 100,
+        opacity: 0,
+        delay: 1,
+        duration: 0.9,
+        stagger: 0.3
+    });
+    gsap.from("#heading2",{
+        y: 100,
+        opacity: 0,
+        delay: 2,
+        duration: 0.9,
+        stagger: 0.3
+    });
+    gsap.from("#heading3",{
+        y: 100,
+        opacity: 0,
+        delay: 3,
+        duration: 0.9,
+        stagger: 0.3
+    }); 
+}
+
+loadingAnimation();

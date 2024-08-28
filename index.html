@@ -5,36 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Audiowide&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <div class="main">
-        <div class="page1">
-            <div class="video-container">
-                <video id="background-video" autoplay muted loop src="videos\4474926-uhd_3840_2160_30fps.mp4"></video>
-            </div>
-            <div class="content">
-                <div class="navbar">
-                    <div class="navlogo">
-                        <h1>CoalMine360</h1>
-                    </div>
-                    <div class="menubar">
-                        <li><a href="#">home</a></li>
-                        <li><a href="#">Methods To Reduce Carbon footprint</a></li>
-                        <li><a href="#">Carbon FootPrint Calculator</a></li>
-                        <li><a href="#">About Us</a></li>
-                    </div>
+<div class="main">
+    <div class="page1">
+        <div class="video-container">
+            <video id="background-video" src="videos/4474926-uhd_3840_2160_30fps.mp4" autoplay muted loop></video>
+        </div>
+        <div class="content">
+            <div class="navbar">
+                <div class="navlogo">
+                    <a href="#"><span style="color: blue;">Coal</span><span style="color: gold;">Mine</span><span style="color: white;">360.</span></a>
+                </div>
+                <div class="menubar">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Real-Time Data</a></li>
+                    <li><a href="#">Carbon Neutrality Pathways</a></li>
+                    <li><a href="#">Carbon Footprint Calculator</a></li>
+                    <li><a href="#">About Us</a></li>
                 </div>
             </div>
-            
+            <div class="tagline">
+                <h1 class="part1heading" id="heading1">Quantifying Today,</h1>
+                <h1 class="part2heading" id="heading2">Neutralizing Tomorrow:</h1>
+                <h1 class="part3heading" id="heading3">Your Path to a Greener Mine.</h1>
+            </div>
         </div>
-        <!-- <div class="page2">
-            <video src="videos\2836084-uhd_3840_2160_24fps.mp4"></video>
-        </div> -->
     </div>
+    <div class="page2">
+        <div class="color-changing-border">
+            <div class="steps">
+                <div class="step-container"></div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
     <script src="script.js"></script>
 </body>
