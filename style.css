@@ -142,7 +142,7 @@ html, body {
     max-width: 70%;
     height: 75vh;
     margin: auto;
-    margin-top:10vw;
+    margin-top:7vw;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -351,4 +351,15 @@ html, body {
     top: 0;
     right: 0;
     z-index: 2;
+}
+
+.news-heading{
+    display: flex;
+    align-items: center;
+    margin-top: 0.5vw;
+    justify-content: center;
+}
+
+.news-heading h1{
+    text-decoration: underline;
 }
